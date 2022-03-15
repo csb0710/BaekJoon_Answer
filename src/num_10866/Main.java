@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 class Deque {
-	private int[] deque = new int[10000];
+	private int size = 10000;
+	private int[] deque = new int[size];
 	private int front = 0;
 	private int back = 0;
-	private int size;
 	
 	public int empty() {
 		if(front == back)
@@ -25,56 +25,40 @@ class Deque {
 	
 	public void push_front(int input) {
 		front--;
-		int result = front;
-		if(result < 0)
-			result = front+deque.length;
-		deque[result] = input;
+		deque[(front+size)%size] = input;
 	}
 	
 	public void push_back(int input) {
-		int result = back;
-		if(result < 0)
-			result = back+deque.length;
-		deque[result] = input;
-		back++;
+		deque[(back+++size)%size] = input;
 	}
 	
 	public int pop_front() {
 		if(empty() == 1)
 			return -1;
-		int result = front;
-		if(result < 0)
-			result = front+deque.length;
-		front++;
-		return deque[result];
+		
+		return deque[(front+++size)%size];
 	}
 	
 	public int pop_back() {
 		if(empty() == 1) 
 			return -1;
 		back--;
-		int result = back;
-		if(result < 0)
-			result = back+deque.length;
-		return deque[result];
+		
+		return deque[(back+size)%size];
 	}
 	
 	public int front() {
 		if(empty() == 1)
 			return -1;
-		int result = front;
-		if(result < 0)
-			result = front+deque.length;
-		return deque[result];
+		
+		return deque[(front+size)%size];
 	}
 	
 	public int back() {
 		if(empty() == 1)
 			return -1;
-		int result = back-1;
-		if(result < 0)
-			result = result+deque.length;
-		return deque[result];
+		
+		return deque[(back-1+size)%size];
 	}
 }
 
