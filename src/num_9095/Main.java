@@ -18,7 +18,6 @@ public class Main {
 		for(int i = 1; i <= count; i++)
 			inputs[i] = Integer.parseInt(scan.readLine());
 		
-		Arrays.sort(inputs);
 		int[] dp = new int[11];
 		dp[1] = 1;
 		dp[2] = 2;
