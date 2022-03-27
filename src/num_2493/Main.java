@@ -14,40 +14,43 @@ public class Main {
 		// Answer of BaekJoon no. 2493
 		
 		BufferedReader scan = new BufferedReader(new InputStreamReader(System.in));
-		
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		int count = Integer.parseInt(scan.readLine());
 		int[] towers = new int[count+1];
-		Stack<Integer> stack = new Stack<>();
-		int top = 0;
+		Stack<Integer> stack_index = new Stack<>();
+		Stack<Integer> stack_value = new Stack<>();
+		int[] result = new int[count+1];
 		
 		String token = scan.readLine();
 		StringTokenizer stk = new StringTokenizer(token);
-	
+		
 		for(int i = 1; i <= count; i++) {
-			boolean check = false;
-			top++;
-			int insert = Integer.parseInt(stk.nextToken());
-			towers[top] = insert;
-			stack.push(insert);
-//			for(int j = top-1; j > 0; j--) {
-//				if(towers[top] <= towers[j]) {
-//					bw.write(Integer.toString(j) + " ");
-//					check = true;
-//					break;
-//				}
-//			}
-//			while(!stack.empty()) {
-//				int index = stack.size()-1;
-//				int top__ = stack.size();
-//				int 
-//				if(towers[top__]stack.pop())
-//			}
-			if(!check) 
-				bw.write("0 ");
+			towers[i] = (Integer.parseInt(stk.nextToken()));
 		}
-		bw.flush();
-		bw.close();
+		
+		stack_value.add(towers[count]);
+		stack_index.add(count); 
+		
+		int index = count-1;
+		
+		while(index > 0) {
+			if(!stack_value.empty()) {
+				int temp = towers[index];
+				while(stack_value.peek() <= temp) {
+					stack_value.pop();
+					result[stack_index.pop()] = index;
+					if(stack_value.empty())
+						break;
+				}
+				stack_value.add(temp);
+				stack_index.add(index);
+			}
+			index--;
+		}
+		
+		for(int i = 1; i < count; i++) {
+			System.out.print(result[i] + " ");
+		}
+		System.out.println(result[count]);
 	}
 	
 
