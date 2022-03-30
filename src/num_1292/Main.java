@@ -2,7 +2,7 @@ package num_1292;
 
 import java.util.Scanner;
 
-public class Answer1292 {
+public class Main {
 
 	public static void main(String[] args) {
 		int answer1, answer2;
