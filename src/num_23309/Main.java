@@ -13,13 +13,13 @@ public class Main {
 		// TODO Auto-generated method stub
 		
 		BufferedReader scan = new BufferedReader(new InputStreamReader(System.in));
-		
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		String[] input = scan.readLine().split(" ");
 		int[] subways_Prev = new int[1000001];
 		int[] subways_Next = new int[1000001];
 		int subway_count = Integer.parseInt(input[0]);
 		int count = Integer.parseInt(input[1]);
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		
 		
 		StringTokenizer st = new StringTokenizer(scan.readLine());
 		int first = Integer.parseInt(st.nextToken());
