@@ -69,6 +69,7 @@ public class Main {
 				if(i < 1 || j < 1 || z < 1 || i > c || j > r || z > h) {
 					continue;
 				}
+
 				
 				if(!bit[z][i+1][j] && graph[z][i+1][j] == 0) {
 					bit[z][i+1][j] = true;
@@ -100,16 +101,16 @@ public class Main {
 				}
 				if(!bit[z+1][i][j] && graph[z+1][i][j] == 0) {
 					bit[z+1][i][j] = true;
-					graph[z][i][j-1] = 1;
+					graph[z+1][i][j] = 1;
 					queue.add(i);
-					queue2.add(j-1);
+					queue2.add(j);
 					queue3.add(z+1);
 				}
 				if(!bit[z-1][i][j] && graph[z-1][i][j] == 0) {
 					bit[z-1][i][j] = true;
 					graph[z-1][i][j] = 1;
 					queue.add(i);
-					queue2.add(j-1);
+					queue2.add(j);
 					queue3.add(z-1);
 				}
 			}

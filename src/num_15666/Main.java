@@ -1,4 +1,4 @@
-package num_15665;
+package num_15666;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -28,6 +28,9 @@ public class Main {
 		for (int i = 0; i < n; i++) {
 			if(before == insert[i])
 				continue;
+			if(check > insert[i]) {
+				continue;
+			}
 			before = insert[i];
             arr[depth] = insert[i];
             dfs(n, m, depth + 1, insert[i]);
@@ -35,28 +38,28 @@ public class Main {
 	}
 
 	public static void main(String[] args) throws IOException {
-		// Answer of BaekJoon 15665
+		// Answer of BaekJoon 15666
 		
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		String[] inputs = br.readLine().split(" ");
-		n = Integer.parseInt(inputs[0]);
-		m = Integer.parseInt(inputs[1]);
+				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+				String[] inputs = br.readLine().split(" ");
+				n = Integer.parseInt(inputs[0]);
+				m = Integer.parseInt(inputs[1]);
 
-		arr = new int[m];
-		bit = new boolean[n];
-		insert = new int[n];
-		
-		StringTokenizer st = new StringTokenizer(br.readLine());
-		for(int i = 0; i < n; i++) {
-			insert[i] = Integer.parseInt(st.nextToken());
-		}
-		
-		Arrays.sort(insert);
+				arr = new int[m];
+				bit = new boolean[n];
+				insert = new int[n];
+				
+				StringTokenizer st = new StringTokenizer(br.readLine());
+				for(int i = 0; i < n; i++) {
+					insert[i] = Integer.parseInt(st.nextToken());
+				}
+				
+				Arrays.sort(insert);
 
-		dfs(n, m, 0, 0);
+				dfs(n, m, 0, 0);
 
-		bw.flush();
-		bw.close();
+				bw.flush();
+				bw.close();
 
 	}
 
