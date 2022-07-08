@@ -8,7 +8,7 @@ import java.util.StringTokenizer;
 public class Main {
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
-//		Answer of BaekJoon no. 11509
+			//	Answer of BaekJoon no. 11509
 		
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			StringTokenizer st;

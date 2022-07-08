@@ -42,7 +42,6 @@ public class Main {
 		// Answer of BaekJoon no. 2252
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		
 		StringTokenizer st;
 		
 		st = new StringTokenizer(br.readLine());
