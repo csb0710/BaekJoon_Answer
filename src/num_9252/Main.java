@@ -23,7 +23,7 @@ public class Main {
 		int r = input.length;
 		int c = input2.length;
 		
-		int[][] dp = new int[r+1][c+1];
+		int[][] dp = new int[r+1][c+1]; 
 		
 		for(int i = 0; i < r + 1; i++) {
 			for(int j = 0; j < c+1; j++) {
