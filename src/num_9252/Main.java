@@ -43,7 +43,7 @@ public class Main {
 			}
 		}
 		
-		System.out.println(dp[r][c]);
+		System.out.println(dp[r][c]); 
 		
 		int i = r;
 		int j = c;
