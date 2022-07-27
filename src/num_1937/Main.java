@@ -39,8 +39,6 @@ public class Main {
 		if(max < dp[x][y]) {
 			max = dp[x][y];
 		}
-		
-		//return dp[x][y];
 	}
 	
 	public static void main(String[] args) throws NumberFormatException, IOException {
@@ -69,19 +67,6 @@ public class Main {
 					dfs(i, j);
 			}
 		}
-		
-//		for(int i = 0; i < count; i++) {
-//			for(int j = 0; j < count; j++) {
-//				System.out.print(dp[i][j]);
-//			}
-//			System.out.println();
-//		}
-//		for(int i = 0; i < count; i++) {
-//			for(int j = 0; j < count; j++) {
-//				System.out.print(visit[i][j]);
-//			}
-//			System.out.println();
-//		}
 		
 		System.out.println(max+1);
 
