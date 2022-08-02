@@ -159,7 +159,7 @@ public class Main {
 		
 		bfs(startx, starty);
 	
-		if(!in_pass && get_pas == count_pass) {
+		if(get_pas == count_pass) {
 			System.out.println(fuel);
 		}
 		else {
