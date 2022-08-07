@@ -63,11 +63,11 @@ public class Main {
 			if(visit[temp2.x][temp2.y])
 				continue;
 			
-			area[temp2.x][temp2.y] = temp2;
-			area_size[temp2.x][temp2.y] = 1;
-			visit[temp2.x][temp2.y]= true;
 			int start_x = temp2.x;
 			int start_y = temp2.y;
+			area[start_x][start_y] = temp2;
+			area_size[start_x][start_y] = 1;
+			visit[start_x][start_y]= true;
 			
 			q_same_area.add(temp2);
 			
