@@ -27,12 +27,10 @@ class Node {
 
 public class Main {
 	static char[][] graph;
-	static boolean[][][] visit_r;
-	static boolean[][][] visit_b;
-	static Node[][][] visit;
+	static Node[][] visit;
 	static boolean goal = false;
 	static boolean bgoal = false;
-	static int result = 0;
+	static int result = -1;
 	
 	public static Node moving(Node curr, int i) {
 		int temprx = curr.rx;
@@ -257,8 +255,6 @@ public class Main {
 		Queue<Node> q = new LinkedList<>();
 		
 		q.add(new Node(rx, ry, bx, by, 0));
-		visit_r[rx][ry][0] = true;
-		visit_b[bx][by][0] = true;
 		
 		while(!q.isEmpty()) {
 			Node temp = q.poll();
@@ -283,16 +279,12 @@ public class Main {
 					return ;
 				}
 				
-//				if(visit_r[temp_move.rx][temp_move.ry][temp_move.move] && visit_b[temp_move.bx][temp_move.by][temp_move.move]) {
-//					continue;
-//				}
-				
-				if(visit[temp_move.rx][temp_move.ry][temp_move.move] != null && (visit[temp_move.rx][temp_move.ry][temp_move.move].bx == temp_move.bx && visit[temp_move.rx][temp_move.ry][temp_move.move].by == temp_move.by)) {
+				if(visit[temp_move.rx][temp_move.ry] != null && (visit[temp_move.rx][temp_move.ry].bx == temp_move.bx && visit[temp_move.rx][temp_move.ry].by == temp_move.by)) {
 					continue;
 				}
 				
 				q.add(temp_move);
-				visit[temp_move.rx][temp_move.ry][temp_move.move] = temp_move; 
+				visit[temp_move.rx][temp_move.ry] = temp_move; 
 			}
 		}
 	}
@@ -312,9 +304,7 @@ public class Main {
 		int findby = 0;
 		
 		graph = new char[r][c];
-		visit_r = new boolean[r][c][11];
-		visit_b = new boolean[r][c][11];
-		visit = new Node[r][c][11];
+		visit = new Node[r][c];
 		
 		for(int i = 0; i < r; i++) {
 			char[] temp = br.readLine().toCharArray();
@@ -336,12 +326,8 @@ public class Main {
 		
 		bfs(findrx, findry, findbx, findby);
 		
-		if(result == 0) {
-			System.out.println(-1);
-		}
-		else {
-			System.out.println(result);
-		}
+		System.out.println(result);
+		
 	}
 
 }
