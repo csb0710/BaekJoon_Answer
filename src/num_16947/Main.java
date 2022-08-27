@@ -8,36 +8,38 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Stack;
 import java.util.StringTokenizer;
 
 class Node {
-	int prev;
 	int temp;
+	int count;
 	
-	public Node(int p, int t) {
-		this.prev = p;
+	public Node(int t, int c) {
 		this.temp = t;
+		this.count = c;
 	}
 }
 
 public class Main {
 	static ArrayList<Integer>[] list;
 	static boolean[] visit;
-	static ArrayList<Integer> cycle;
+	static boolean[] visit2;
 	static int count;
 	static boolean[] check;
-	static boolean is_cycle;
 	static int start_node = 0;
+	static int[] result;
+	static Queue<Node> q = new LinkedList<>();
 	
 	public static boolean dfs(int prev, int temp) {
 		visit[temp] = true;
-		System.out.println(prev + " " + temp);
 		
 		for(int next : list[temp]) {
 			if(visit[next] && next != prev) {
 				check[next] = true;
 				start_node = next;
+				result[next] = 0;
+				q.add(new Node(next, 0));
+				visit2[next] = true;
 				return true;
 			}
 			
@@ -45,10 +47,16 @@ public class Main {
 				if(dfs(temp, next)) {
 					if(start_node == temp) {
 						check[next] = true;
+						result[next] = 0;
+						q.add(new Node(next, 0));
+						visit2[next] = true;
 						return false;
 					}
 					else {
 						check[next] = true;
+						result[next] = 0;
+						q.add(new Node(next, 0));
+						visit2[next] = true;
 						return true;
 					}
 				}
@@ -59,36 +67,32 @@ public class Main {
 		return false;
 	}
 	
-	public static int get_result(int x) {
+	
+	public static void get_result() {
 		visit = new boolean[count+1];
+		//Queue<Node> q = new LinkedList<>();
 		
-		Queue<Integer> q = new LinkedList<>();
-		q.add(x);
-		visit[x] = true;
-		int index = 1;
-		
+//		for(int i = 1; i < count+1; i++) {
+//			if(check[i]) {
+//				q.add(new Node(i, 0));
+//				visit[i] = true;
+//				result[i] = 0;
+//			}
+//		}
 		
 		while(!q.isEmpty()) {
-			int size = q.size();
-			for(int i = 0; i < size; i++) {
-				int temp = q.poll();
+			Node temp = q.poll();
 			
-				for(int var : list[temp]) {
-					if(visit[var]) {
-						continue;
-					}
-					if(check[var]) {
-						return index;
-					}
-					q.add(var);
-					visit[var] = true;
-				}
+			for(int next : list[temp.temp]) {
+				if(visit2[next])
+					continue;
+				
+				result[next] = temp.count+1;
+				q.add(new Node(next, temp.count+1));
+				visit2[next] = true;
 			}
-			index++;
-			
 		}
 		
-		return 0;
 	}
 	
 	public static void main(String[] args) throws NumberFormatException, IOException {
@@ -101,8 +105,9 @@ public class Main {
 		count = Integer.parseInt(br.readLine());
 		list = new ArrayList[count+1];
 		visit = new boolean[count+1];
-		cycle = new ArrayList<>();
+		visit2 = new boolean[count+1];
 		check = new boolean[count+1];
+		result = new int[count+1];
 		
 		for(int i = 1; i < count+1; i++) {
 			list[i] = new ArrayList<>();
@@ -118,13 +123,10 @@ public class Main {
 		}
 		
 		dfs(0, 1);
+		get_result();
+		
 		for(int i = 1; i < count+1; i++) {
-			if(check[i]) {
-				bw.append(0 + " ");
-			}
-			else {
-				bw.append(get_result(i) + " ");
-			}
+			bw.append(result[i] + " ");
 		}
 		
 		bw.flush();
