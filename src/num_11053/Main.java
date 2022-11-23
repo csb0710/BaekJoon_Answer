@@ -26,8 +26,6 @@ public class Main {
 			input[i] = Integer.parseInt(st.nextToken());
 		}
 		
-		
-		
 		for(int i = 0; i < count; i++) {
 			dp[i] = 1;
 		}
